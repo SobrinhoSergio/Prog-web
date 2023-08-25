@@ -1,0 +1,48 @@
+1) Considere o exemplo de arquivo texto "pereciveis.cvs"  abaixo, que poderia guardar dados de diversos produtos perecíveis, no formato CSV(formato de valores separados por vírgula ou ponto-e-vírgula), cuja data de validade pode estar ultrapassada. Considere que o dua atual é "05/05/2023".
+
+Descrição;Validade
+Iogurte desnatado 1L;06/05/2023
+Cerveja Acme 600ml;04/05/2023
+Leite Integral Mimosa 1L; 05/05/2023
+Queijo Minerim 250g;03/05/2023
+
+Faça um script que leia o arquivo CSV, que pode ter produtos diversos do que está no exempo acima, e então imprima quais produtos estão fora do prozo de validade (vencidos) e há quantos dias.
+
+2) Considere o banco de dados "mma", localizado em "localhost", com charset "utf8", usuário "dev", senha "123456" e que tenha a tabela "lutador", cuja estrutura é indicada abaixo:
+
+CREATE TABLE lutador(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	peso_em_quilos DECIMAL(5,2) NOT NULL,
+	altura_em_metros DECIMAL(3,2) NOT NULL
+) ENGINE=INNODB;
+
+
+a) Faça um script que consulte e liste cada lutador, com todos os seus dados.
+
+b) Após a listagem realizada no script anterior, imprima os seguintes dados, consultados do banco de dados: número total de lutadores, média de alturas, a maior altura e o maior peso.
+
+3) Considere o arquivo "lutador.php" abaixo, que contém a classe Lutador:
+
+class Lutador{
+	public $id = 0;
+	public $nome = '';
+	public $pesoEmQuilos = 0.00;
+	public $alturaEmMetros = 0.00;
+	
+	public function __construct($id = 0, $nome = '', $pesoEmKilos = 0.00, $alturaEmMetros = 0.00){
+		$this->id = $id;
+		$this->nome = $nome;
+		$this->pesoEmKilos = $pesoEmKilos;
+		$this->alturaEmMetros = $alturaEmMetros;
+
+	}
+}
+
+a) Crie um arquivo "repositorio-lutador.php" com um namespace "Mma" que contenha uma interface que represente um repositório de lutadores (abstrações responsável por recuperar e manipular lutadores em algum meio de persistência - tal como um arquivo ou um banco de dados), que contenha métodos para (i) adicionar um lutador (objeto de classe Lutador) no meio de persistência ; (ii) remover um lutador, a partir de um id fornecedor , do meio de persistência. 
+
+b) Crie um arquivo "repositorio-lutador-em-bdr.php", com um namespace "Mma", que implemente a interface anterior indicada, para o bando de dados relacional (BDR) indicado na questão anterior. Na implementação, não utilize quaisquer funções de impressão (como echo e die).
+
+c) Crie um arquivo e script "remover.php" que NÃO esteja no namespace "Mma" e que: (i) solicite que o usuário informe o Id de dois lutadores; (ii) Utilizando controle de transação e o repositório criado anteriormente, remova os luatdores informados.
+
+4) Faça uma função para formatar um número de telefone (string) recebido como argumento que, somente se o número contiver 10 ou 11 caracteres e esses forem númericos, a função deve retornar o telefone formatado. Do contrário, dev retornar uma string vazia. O formato de telefone para quando esse tiver 10 caracteres (ex. '2225271727') é como nesse exemplo: "(22) 2527-1727". O formato para quando tiver 11 caracteres (ex. "22988776655") é como neste exemplo "(22) 98877-6655".
