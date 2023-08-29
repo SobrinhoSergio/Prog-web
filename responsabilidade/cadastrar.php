@@ -1,5 +1,5 @@
 <?php
-require_once 'db-connection.php';
+require_once 'db-config.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = $_POST["nome"];

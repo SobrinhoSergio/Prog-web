@@ -1,5 +1,5 @@
 <?php
-require_once 'db-connection.php';
+require_once 'db-config.php';
 
 $query = "SELECT * FROM lutador";
 $stmt = $conn->query($query);
