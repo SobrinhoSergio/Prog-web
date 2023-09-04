@@ -1,8 +1,8 @@
 <?php
 
 $servername = "localhost";
-$username = "dev";
-$password = "123456";
+$username = "root";
+$password = "";
 $dbname = "mma";
 
 try {
