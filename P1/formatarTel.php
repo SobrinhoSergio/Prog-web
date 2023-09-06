@@ -20,3 +20,33 @@ $numero2 = '22988776655';
 
 echo formatarTelefone($numero1) . "\n";  // Saída: (22) 2527-1727
 echo formatarTelefone($numero2) . "\n";  // Saída: (22) 98877-6655
+
+//----------------------------------------------------------------------------
+
+function formatarTelefone2($telefone){
+
+    $tamanho = mb_strlen($telefone);
+
+    $v = '';
+
+    if(($tamanho === 10 || $tamanho === 11) && is_numeric($telefone)){
+        if($tamanho === 10){
+            $v = "(" . mb_substr($telefone, 0, 2) . ") " . mb_substr($telefone, 2, 4) . "-" . mb_substr($telefone, 6);
+            
+            return $v;
+        }
+
+        else{
+            $v = "(" . mb_substr($telefone, 0, 2) . ") " . mb_substr($telefone, 2, 5) . "-" . mb_substr($telefone, 7);
+            
+            return $v;
+        }
+    }
+
+    return v;
+
+}
+
+$telefone = readline("Digite: ");
+
+echo formatarTelefone2($telefone);

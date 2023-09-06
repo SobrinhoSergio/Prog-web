@@ -2,27 +2,52 @@
 
 namespace Mma;
 
-class LutadorRepositoryBDR implements LutadorRepositoryInterface {
-    private $conn;
+require_once 'Lutador.php';
+require_once 'repositorio-lutador.php';
+require_once 'repositorio-exception.php';
 
-    public function __construct(\PDO $conn) {
-        $this->conn = $conn;
+use \PDO;
+use \PDOException;
+use \RepositorioException;
+
+class LutadorRepositoryBDR implements RepositorioLutador {
+    private $pdo = null;
+
+    public function __construct(PDO $pdo) {
+        $this->pdo = $pdo;
     }
 
-    public function adicionarLutador(Lutador $lutador) {
-        $query = "INSERT INTO lutador (nome, peso_em_quilos, altura_em_metros) VALUES (:nome, :peso, :altura)";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindValue(':nome', $lutador->nome);
-        $stmt->bindValue(':peso', $lutador->pesoEmKilos);
-        $stmt->bindValue(':altura', $lutador->alturaEmMetros);
-        $stmt->execute();
+    function adicionarLutador(Lutador $lutador) {
+        try{
+            $sql = "INSERT INTO lutador (nome, peso_em_quilos, altura_em_metros) 
+            VALUES (:nome, :peso, :altura)";
+
+            $ps = $this->pdo->prepare($sql);
+            $ps->execute([
+                ':nome' => $lutador->nome,
+                ':peso' => $lutador->pesoEmQuilos,
+                ':altura' => $lutador->alturaEmMetros
+            ]);
+        }
+        catch(PDOException $e){
+            throw new RepositorioException("Erro ao inserir lutador ", $e->getCode(), $e);
+        }
     }
 
-    public function removerLutadorPorId($id) {
-        $query = "DELETE FROM lutador WHERE id = :id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindValue(':id', $id);
-        $stmt->execute();
+    function remover(int $id) {
+        try {
+            $query = "DELETE FROM lutador WHERE id = :id";
+            $ps = $this->pdo->prepare($query);
+            $ps->execute([':id' => $id]);
+
+            if($ps->rowCount() < 1) {
+                return false;
+            }
+            return true;
+
+        }catch (PDOException $e) {
+            throw new RepositorioException("Erro ao remover lutador ", $e->getCode(), $e);
+        }
     }
 }
 

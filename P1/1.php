@@ -1,22 +1,29 @@
 <?php
-$currentDate = DateTime::createFromFormat('d/m/Y', '05/05/2023');
 
-$handle = fopen('pereciveis.csv', 'r');
-if ($handle !== false) {
-    echo "Produtos vencidos:\n";
+$dados = @file_get_contents('pereciveis.csv');
 
-    while (($data = fgetcsv($handle, 1000, ';')) !== false) {
-        $productDescription = $data[0];
-        $expirationDate = DateTime::createFromFormat('d/m/Y', $data[1]);
+$linhas = explode("\n", $dados);
 
-        if ($expirationDate < $currentDate) {
-            $daysExpired = $currentDate->diff($expirationDate)->days;
-            echo "Produto: $productDescription - Dias vencidos: $daysExpired\n";
-        }
-    }
+$produtos = [];
 
-    fclose($handle);
-} else {
-    echo "Não foi possível abrir o arquivo CSV.\n";
+foreach ($linhas as $l){
+    $p = explode(",", $l);
+    $produtos[]=[
+        'descricao' => $p[0],
+        'validade' => $p[1]
+    ];
 }
+
+$dataAtual = ['S', 'S', '2023'];
+
+foreach ($produtos as $p){
+    $data = explode(",", $p['validade']);
+    $dia = $data[0] - $dataAtual[0];
+
+    if($dia > 0){
+        echo "Produtos Vencidos", PHP_EOL;
+        echo $p['descricao'], '-', p['validade'], '-', 'Vencido a ', $dia, 'dias', PHP_EOL; 
+    }
+}
+
 ?>

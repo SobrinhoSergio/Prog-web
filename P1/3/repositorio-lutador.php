@@ -2,9 +2,13 @@
 
 namespace Mma;
 
-interface LutadorRepositoryInterface {
+require_once "lutador.php";
+
+// Guardar as funcionalidades do Sistema
+
+interface RepositorioLutador {
     public function adicionarLutador(Lutador $lutador);
-    public function removerLutadorPorId($id);
+    public function remover(int $id);
 }
 
 ?>
