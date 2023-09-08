@@ -1,5 +1,4 @@
 <?php
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,20 +10,12 @@ try {
 
     // Consulta para listar todos os lutadores
     $ps = $pdo->prepare("SELECT * FROM lutador");
-    $ps->setFetchMode(PDO::FETCH_ASSOC); // Correção aqu
+    $ps->setFetchMode(PDO::FETCH_ASSOC); 
     $ps->execute();
-
-    $lutadores = [];
-
-    echo '<html>';
-    echo '<body>';
 
     foreach ($ps as $p) {
         echo '<p>' . $p['id'] . '-' . $p['nome'] . '-' . $p['peso'] . '-' . $p['altura'] . '</p>';
     }
-
-    echo '</body>';
-    echo '</html>';
     
 }catch(PDOException $e){
     die("Error ao consultar o banco de dados: " . $e->getMessage());
