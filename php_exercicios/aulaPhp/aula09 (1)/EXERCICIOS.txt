@@ -1,0 +1,24 @@
+1) A indústria Acme precisa controlar suas matérias-primas, utilizadas
+   no processo produtivo. Uma matéria-prima possui descrição, quantidade,
+   custo e categoria. Uma categoria possui nome.
+
+   Dessa forma, crie uma pequena aplicação PHP para a web, capaz de
+   manter as informações das matérias-primas. Nela, é preciso:
+
+a) Ter as entidades modeladas como classes;
+b) Ter repositório(s) para abstrair a persistência dos dados;
+c) Ter um banco de dados relacional MySQL normalizado, com as
+   tabelas correspondentes.
+
+As funcionalidades requeridas são:
+    i)  Listagem das matérias-primas com suas categorias, em forma
+        de tabela. No fim da listagem deve ter a média de custo
+        das matérias-primas.
+
+    ii) Cadastro de matéria-prima, com a seleção da categoria através
+        de um campo de seleção (select).
+
+    iii) Alteração de matérias-primas, que deve exibir todos os campos,
+        incluindo a categoria de forma selecionada.
+
+    iv) Remoção da matéria-prima.

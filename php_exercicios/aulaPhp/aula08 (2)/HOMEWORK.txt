@@ -1,0 +1,19 @@
+HOMEWORK
+
+1) Crie uma pequena aplicação de controle de estoque que permita
+   fazer as operações de CRUD (Create, Retrieve, Update, Delete)
+   de um produto, contendo id, descrição, estoque e preço.
+
+   Para realizar as operações relacionadas à persistência do produto,
+   deve ser utilizada uma classe RepositorioProdutoEmBDR.
+
+2) Adicione a opção de pesquisar os produtos por qualquer campo,
+   filtrando os resultados obtidos.
+
+3) Adicione a opção de ordenar os produtos por qualquer campo.
+
+4) Adicione à listagem de produtos um rodapé de tabela (tfoot)
+   com os valores de estoque mínimo e máximo e o valor médio do preço.
+
+
+

@@ -1,0 +1,37 @@
+EXERCÍCIOS
+
+1) Modifique o arquivo "contatos.php" para que, opcionalmente, receba
+   um parâmetro "p", que contenha um valor de pesquisa.
+   Use esse valor para filtrar parcialmente os contatos, procurando
+   o valor em todos os campos.
+
+2) Modifique o arquivo "contatos.php" para que, opcionalmente, receba
+   um parâmetro "ordem", que indique o campo pelo qual deseja ordenar
+   a tabela. Aceite somente o nome dos campos e exiba a listagem ordenada.
+
+3) Adicione o parâmetro opcional "inverter" que, caso seja 1, exiba
+   a ordenação de forma descrescente.
+
+4) Adicione ao arquivo "contatos.php", antes da listagem de contatos,
+   um formulário que utilize o método GET para realizar a pesquisa
+   de usuários, de acordo com o valor informado.
+
+5) Acrescente ao formulário anterior um campo de seleção "Ordenação",
+   em que um usuário possa selecionar um dos campos de contatos.
+
+6) Acrescente uma caixa de marcação ao formulário anterior para
+   indicar que a ordenação deve ser decrescente.
+
+7) Modifique o formulário para que este exiba os valores dos parâmetros,
+   caso informados. Por exemplo, se houver um parâmetro "p" com valor "Ana",
+   o input de pesquisa também deve exibir "Ana".
+   Faça-o para todos os campos do formulário.
+
+8) Adicione validação ao contato, verificando se:
+    - O nome tem de 2 a 100 caracteres;
+    - O telefone tem de 10 a 11 caracteres;
+    - O id é um valor numérico, caso seja informado.
+  Exiba todas os erros e então exiba um botão "Voltar", que faça com
+  que o navegador volte uma página no histórico, utilizando JavaScript,
+  como no código abaixo:
+    <button onclick="history.back();" >Voltar</button>

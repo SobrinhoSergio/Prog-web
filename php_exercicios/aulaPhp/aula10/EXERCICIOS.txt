@@ -1,0 +1,35 @@
+1. Crie um formulário de cadastro de Produto contendo os campos
+   abaixo. Envie os dados para o servidor e verifique as restrições
+   indicadas:
+
+a)  Descrição deve:
+    - ter entre 2 e 100 caracteres;
+    - começar com uma letra maiúscula
+
+b) Validade deve ser uma data no formato "dd/mm/aaaa" e ser uma data
+   válida. Observação: Use a função checkdate( $mes, $dia, $ano ) do PHP
+   após verificar com uma expressão regular.
+
+c) Estoque deve ser um número inteiro (positivo ou negativo).
+   Verifique-o via expressão regular.
+
+Uso:
+    preg_match( $regex, $valor )
+
+Obs.: Não é necessário salvar no BD. Indique apenas "Salvo com sucesso."
+
+.: HOMEWORK :.
+
+Abra um site qualquer que venda livros (ex. amazon.com.br) e
+procure por um livro qualquer (ex. "php moderno"). Então, obtenha o
+conteúdo da página através do código abaixo:
+    $conteudo = file_get_contents( urlencode( $url ) );
+Em seguida, usando Expressões Regulares:
+a) Extraia o nome do produto e imprima-o.
+b) Extraia o preço do produto e imprima-o.
+
+Dica: O comando preg_match() possui um terceiro argumento que recebe
+      os casamentos (array) por referêncua. Ex:
+        preg_match( $regex, $valor, $casamentos )
+      Use grupos para que os resultados desejados apareçam nos casamentos.
+

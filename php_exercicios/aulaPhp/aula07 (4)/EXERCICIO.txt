@@ -1,0 +1,38 @@
+HASH:
+
+Algoritmo para criar uma representação que resume um conteúdo de tamanho
+arbitrário. Um algoritmo de hash irá:
+ (i)   Sempre gerar a mesma saída, dada a mesma entrada;
+ (ii)  Gerar saídas do mesmo tamanho (mesmo número de bytes).
+ (iii) Gerar saídas suficientemente (pseudo-)aleatórias, para
+       evitar colisão de conteúdos.
+
+EXERCÍCIOS:
+
+1) Crie um banco de dados com uma tabela que represente uma conta bancária
+   ("conta"). A conta deve ter id, dono, cpf, senha e saldo.
+
+2) Crie um programa capaz de cadastrar uma conta, armazenando a senha
+   com um Hash SHA-1 com sal.
+
+3) Crie no programa uma opção para listar as contas existentes, sem
+   mostrar as senhas. Para isso, crie uma opção correspondente na
+   abstração de repositório que permita retornar todas as contas
+   como um array de objetos da classe Conta.
+
+4) Crie uma opção no programa para realizar o depósito em uma conta.
+   Para isso, é preciso solicitar o CPF do dono, a senha da conta e
+   o valor a ser depositado. O valor deve apenas ser depositado caso
+   o CPF e a senha (seu hash) correspondam ao de uma das contas.
+   Similarmente ao realizado anteriormente, crie na abstração de
+   repositório um método que permita depositar um montante na conta.
+   DICA: Crie um método para consultar uma conta dado seu CPF e senha.
+
+5) Crie uma opção para transferir um montante de uma conta para outra,
+   dado que sejam informados os CPFs e senhas correspondentes.
+   Apenas se a conta origem contiver o montante corresponte em seu
+   saldo, a operação deve ser realizada. Do contrário, uma exceção
+   do tipo ContaException deve ser lançada, explicando o motivo.
+   Utilize controle de transação na solução.
+
+IMPORTANTE: Nunca, jamais retorne o campo senha do banco de dados!

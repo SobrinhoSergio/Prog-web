@@ -1,0 +1,22 @@
+# LEIA-ME
+
+## JSON-Server
+
+> O programa JSON Server foi instalado apenas para testar o uso do software curl.
+
+Logo, não é preciso instalar o JSON Server caso for fazer o servidor em PHP.
+
+### Instalação do JSON Server
+
+1. Instale o NodeJS (LTS), caso não tenha.
+2. Instale o PNPM, caso não tenha: execute
+   npm i -g pnpm
+   Obs.: nos computadores do CEFET, que têm NodeJS 12, deve ser preciso
+         instalar o pnpm 5, assim: "npm i -g pnpm@5"
+3. Instale o JSON-Server:
+   pnpm i -D json-server
+
+### Execução do JSON Server com o arquivo api.json
+
+npx json-server api.json --watch
+
