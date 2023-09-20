@@ -1,0 +1,25 @@
+EXERCÍCIOS
+
+1) Crie a classe "Produto" que represente um produto, com:
+    - Os seguintes atributos privados:
+        "descricao", "estoque", "markup" e "precoCompra";
+    - Métodos públicos getters e setters para esses atributos;
+    - O método precoVenda(), que por padrão retorna o preço de
+      compra adicionado do markup. O markup é um valor
+      percentual, ex. 10%.
+    - Um construtor que possibilite inicializar os atributos.
+2) Crie um método estático instancias() em Produto que retorne
+   quantas vezes a classe foi instanciada.
+3) Crie a classe final "ProdutoTributado" que represente um
+   produto com imposto. Acrescente o atributo "imposto" e
+   sobrescreva precoVenda() acrescentando seu percentual.
+4) Em um arquivo ItemVenda, crie uma classe ItemVenda,
+   que possua uma instância de Produto e um atributo
+   "quantidade", que representa a quantidade vendida.
+   Nela deve haver o método subtotal(), que deve retornar
+   o preço de venda do produto, multiplicado pela quantidade.
+   A classe deve ter um construtor que inicialize os atributos.
+5) Crie a classe Venda, em seu próprio arquivo, com os métodos
+   adicionarItem( ItemVenda $item ), removerItemNaPosicao( $posicao )
+   getItens(), que retorne seus itens, e total(), que retorne o
+   somatório dos itens da venda.
