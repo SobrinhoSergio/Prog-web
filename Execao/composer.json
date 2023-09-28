@@ -1,0 +1,11 @@
+{
+    "name": "sergio/execao",
+    "autoload": {
+        "psr-4": {
+            "Sergio\\Execao\\": "src/"
+        }
+    },
+    "require": {
+        "phputil/extenso": "^2.0"
+    }
+}

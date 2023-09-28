@@ -1,0 +1,67 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "32919ce3f167ce303d8214b14a305216",
+    "packages": [
+        {
+            "name": "phputil/extenso",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thiagodp/extenso.git",
+                "reference": "f222aa284e8aad361a611c39a1c39ce4fc39a74d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thiagodp/extenso/zipball/f222aa284e8aad361a611c39a1c39ce4fc39a74d",
+                "reference": "f222aa284e8aad361a611c39a1c39ce4fc39a74d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "phputil\\extenso\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Thiago Delgado Pinto"
+                }
+            ],
+            "description": "Conversão de valores por extenso PHP",
+            "homepage": "http://github.com/thiagodp/extenso",
+            "keywords": [
+                "extenso",
+                "valor",
+                "valores"
+            ],
+            "support": {
+                "issues": "https://github.com/thiagodp/extenso/issues",
+                "source": "https://github.com/thiagodp/extenso"
+            },
+            "time": "2021-02-25T04:22:50+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}
