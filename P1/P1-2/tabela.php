@@ -49,9 +49,6 @@ require_once 'conexao.php';
             <tfoot>
                 <?php
                     try {
-                        $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-                        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    
                         // Consulta para listar todos os lutadores
                         $ps = $pdo->prepare("
                             SELECT 
