@@ -40,16 +40,12 @@ try {
     echo '</tbody>
         <tfoot>
             <tr>
-                <td colspan="4">Total de Lutadores: ' . $dados['total_lutadores'] . '</td>
-            </tr>
-            <tr>
-                <td colspan="4">Média das Alturas: ' . $dados['media_alturas'] . '</td>
-            </tr>
-            <tr>
-                <td colspan="4">Maior Altura: ' . $dados['maior_altura'] . '</td>
-            </tr>
-            <tr>
-                <td colspan="4">Maior Peso: ' . $dados['maior_peso'] . '</td>
+                <td colspan="3">Total de Lutadores: ' . $dados['total_lutadores'] . '</td>
+                <td>Média das Alturas: ' . $dados['media_alturas'] . '</td>
+                <td>Maior Altura: ' . $dados['maior_altura'] . '</td>
+                <td>Maior Peso: ' . $dados['maior_peso'] . '</td>
+                <td></td>
+                <td></td>
             </tr>
         </tfoot>
     </table>';
