@@ -1,0 +1,30 @@
+1) Crie uma tabela "tarefa" (id, descricao, feita) em
+   um banco de dados "acme". Insira as tarefas abaixo:
+   Comprar pão, 1
+   Pagar internet, 0
+   Pagar luz, 1
+   Comprar cerveja, 0
+2) Crie um script PHP "listar.php" que liste todas as tarefas.
+3) Crie um script PHP "cadastrar.php" que solicite os dados
+   de uma tarefa e insira-a no banco de dados. O atributo
+   feita deve ser solicitado do usuário como "S" ou "N"
+   (Sim/Não).
+4) Crie um script PHP "remover.php" que solicite o ID de uma
+   tarefa e então a remova.
+5) Crie um script PHP "fazer.php" que solicite o ID de uma
+   tarefa e inverta o valor do atributo "feita".
+6) Crie um script PHP "pesquisar.php" que solicite a
+   descrição de uma tarefa e pesquise todas as tarefas que
+   contenham o valor informado.
+-- controle de transação --
+7) Um cliente (id, nome, saldo) possui uma certa quantidade
+   de créditos em seu telefone celular, guardados em "saldo".
+   A operadora de telefonia deseja permitir que um cliente
+   possa transferir seu saldo para outro cliente. Assim,
+   crie a tabela acima e um script que solicite o ID de dois
+   clientes e o valor a ser transferido. Se o cliente de
+   origem não contiver o valor informado em seu saldo,
+   deve ser exibida uma mensagem de erro. Do contrário, deve
+   ser realizada a transferência utilizando controle de
+   transação.
+
