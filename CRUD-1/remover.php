@@ -10,9 +10,9 @@ $pdo = null;
 try {
     $pdo = conectar();
     
-    $ps = $pdo->prepare( 'DELETE FROM tarefa WHERE id = ?' );
+    $ps = $pdo->prepare( 'DELETE FROM tarefa WHERE id = :id' );
 
-    $ps->execute( [ $id ] );
+    $ps->execute( [ 'id' => $id ] );
 
     echo 'Removido com sucesso.';
 

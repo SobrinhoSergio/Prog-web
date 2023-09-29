@@ -11,9 +11,9 @@ try {
     
     $pdo = conectar();
     
-    $ps = $pdo->prepare('UPDATE tarefa SET feita = NOT feita WHERE id = ?' );
+    $ps = $pdo->prepare('UPDATE tarefa SET feita = NOT feita WHERE id = :id' );
         
-    $ps->execute( [ $id ] );
+    $ps->execute( [ 'id' => $id ] );
     
     echo 'Atualizado com sucesso.';
 
