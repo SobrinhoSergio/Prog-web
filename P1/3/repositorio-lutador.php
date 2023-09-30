@@ -9,6 +9,7 @@ require_once "lutador.php";
 interface RepositorioLutador {
     public function adicionarLutador(Lutador $lutador);
     public function remover(int $id);
+    public function listar();
 }
 
 ?>

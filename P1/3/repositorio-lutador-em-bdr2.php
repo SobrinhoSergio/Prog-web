@@ -74,22 +74,26 @@ class LutadorRepositoryBDR implements RepositorioLutador {
         }
     }
 
-    function exibirLutador(int $id) {
+    function listar() {
         try {
-            $query = "SELECT * FROM lutador WHERE id = :id";
+            $query = "SELECT * FROM lutador";
             $ps = $this->pdo->prepare($query);
-            $ps->execute([':id' => $id]);
 
-            $lutador = $ps->fetch(PDO::FETCH_ASSOC);
-            if (!$lutador) {
-                return null; // Lutador não encontrado
+            $ps->fetch(PDO::FETCH_ASSOC);
+            
+            $ps->execute();
+            
+            $c = [];
+            
+            foreach($ps as $reg){
+                $c []= new Conta(
+                    $reg['id'],
+                    $reg['nome'],
+                    $reg['altura'],
+                    $reg['peso']
+                );
             }
-
-            return new Lutador(
-                $lutador['nome'],
-                $lutador['peso_em_quilos'],
-                $lutador['altura_em_metros']
-            );
+            return $c;
 
         } catch (PDOException $e) {
             throw new RepositorioException("Erro ao exibir lutador ", $e->getCode(), $e);
