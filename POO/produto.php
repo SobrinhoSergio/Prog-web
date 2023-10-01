@@ -79,7 +79,12 @@ $p1->setMarkup(10);
 echo $p1->getPrecoCompra(),  PHP_EOL;
 echo $p1->precoVenda();
 
-$produto2 = new Produto('Produto B', 200, 15, 60.0);
+$produto2 = new Produto('GIRAFAAAAASSSS', 200, 15, 60.0);
+
+echo '----------------------';
+echo $produto2->getDescricao(), PHP_EOL;
+echo '----------------------';
+
 $produto3 = new Produto('Produto C', 150, 12, 55.0);
 
 $quantidadeInstancias = Produto::instancias();
