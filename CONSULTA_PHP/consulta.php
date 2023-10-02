@@ -1,16 +1,12 @@
 <?php
-$host = 'localhost';
-$dbname = 'cadastro_pessoas_db';
-$username = 'root';
-$password = '';
+
+require_once 'conexaoBD.php';
 
 $pdo = null;
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname; charset=utf8", $username, $password);
-    
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+    $pdo = conectar();
+     
     echo 'Conectado!!!', PHP_EOL;
 
     $ps = $pdo->prepare("
