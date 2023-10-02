@@ -27,3 +27,23 @@ function formatarTelefone2($telefone){
 $telefone = readline("Digite: ");
 
 echo formatarTelefone2($telefone);
+
+echo "----------------------------------";
+
+
+function formatarCPF($cpf) {
+    // Remove qualquer caractere não numérico do CPF
+    $cpf = preg_replace("/[^0-9]/", "", $cpf);
+
+    // Verifica se o CPF tem 11 dígitos numéricos
+    if (strlen($cpf) === 11 && is_numeric($cpf)) {
+        
+        return substr($cpf, 0, 3) . '.' . substr($cpf, 3, 3) . '.' . substr($cpf, 6, 3) . '-' . substr($cpf, 9, 2);
+    } else {
+        // Se não atender aos critérios, retorna o CPF original
+        return $cpf;
+    }
+}
+
+$cpf = readline("Digite o CPF: ");
+echo formatarCPF($cpf);

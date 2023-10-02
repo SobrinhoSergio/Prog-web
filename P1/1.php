@@ -27,3 +27,37 @@ foreach ($produtos as $p){
 }
 
 ?>
+
+--------------------------------------------------------------------
+
+<?php
+$dados = @file_get_contents('produtos.csv');
+
+$linhas = explode("\n", $dados);
+
+$produtos = [];
+
+foreach ($linhas as $l) {
+    $p = explode(";", $l);
+    if (count($p) === 3) { // Verifica se a linha tem três colunas (descricao, estoque e preco)
+        $produtos[] = [
+            'descricao' => trim($p[0]),
+            'estoque' => intval(trim($p[1])),
+            'preco' => floatval(trim($p[2]))
+        ];
+    }
+}
+
+$inventarioTotal = 0;
+$somaPrecos = 0;
+
+foreach ($produtos as $produto) {
+    $inventarioTotal += $produto['estoque'] * $produto['preco'];
+    $somaPrecos += $produto['preco'];
+}
+
+$mediaPrecos = $somaPrecos / count($produtos);
+
+echo "Inventário Total: R$ " . number_format($inventarioTotal, 2, ',', '.') . PHP_EOL;
+echo "Média de Preços: R$ " . number_format($mediaPrecos, 2, ',', '.') . PHP_EOL;
+?>
