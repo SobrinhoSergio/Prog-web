@@ -7,17 +7,17 @@ $linhas = explode("\n", $dados);
 $produtos = [];
 
 foreach ($linhas as $l){
-    $p = explode(",", $l);
+    $p = explode(";", $l);
     $produtos[]=[
         'descricao' => $p[0],
         'validade' => $p[1]
     ];
 }
 
-$dataAtual = ['S', 'S', '2023'];
+$dataAtual = ['5', '5', '2023'];
 
 foreach ($produtos as $p){
-    $data = explode(",", $p['validade']);
+    $data = explode("/", $p['validade']);
     $dia = $data[0] - $dataAtual[0];
 
     if($dia > 0){
