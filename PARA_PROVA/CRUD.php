@@ -6,9 +6,9 @@ require_once 'CrudException.php';
 use excecoes\CrudException; 
 
 class Crud {
-    private $pdo;
+    private $pdo = null;
 
-    public function __construct() {
+    public function __construct(PDO $pdo) {
         $this->pdo = Conexao::conectar();
     }
 
@@ -20,7 +20,7 @@ class Crud {
 
             return 'Inserido com sucesso.';
         } catch (PDOException $e) {
-            // Use a exceção personalizada CrudException aqui
+          
             throw new CrudException('Erro ao cadastrar tarefa: ');
         }
     }
@@ -51,7 +51,9 @@ class Crud {
             $ps->execute(['id' => $id]);
 
             return 'Removido com sucesso.';
+            
         } catch (PDOException $e) {
+
             throw new CrudException('Erro ao remover tarefa: ');
         }
     }
