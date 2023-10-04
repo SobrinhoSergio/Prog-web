@@ -5,7 +5,7 @@ require_once 'conexao.php';
 $pdo = null;
 
 try {
-    $pdo = null;
+    $pdo = conectar();
 
     $ps = $pdo->prepare("
         SELECT 
