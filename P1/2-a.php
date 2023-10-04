@@ -1,20 +1,13 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cadastro_pessoas_db";
+
+require_once 'conexao.php';
+
+$pdo = null;
 
 try {
-    $pdo = new PDO("mysql:host=$servername;
-                    dbname=$dbname;
-                    charset=utf8", 
-                    $username,
-                    $password
-    );
-    
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Consulta para listar todos os lutadores
+    $pdo = conectar();
+
     $ps = $pdo->prepare("SELECT * FROM lutador");
     $ps->setFetchMode(PDO::FETCH_ASSOC); 
     $ps->execute();

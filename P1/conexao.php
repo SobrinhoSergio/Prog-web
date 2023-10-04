@@ -1,21 +1,13 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cadastro_pessoas_db";
 
-try {
-    $pdo = new PDO("mysql:host=$servername;
-                    dbname=$dbname;
-                    charset=utf8", 
-                    $username,
-                    $password
+function conectar(){
+    return new PDO("mysql:host=localhost;
+                    dbname=cadastro_pessoas_db;
+                    charset=utf8",
+                    'root',
+                    '',
+                    [ PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION ]     
     );
-    
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-}catch(PDOException $e){
-    die("Error ao consultar o banco de dados: " . $e->getMessage());
 }
 
 

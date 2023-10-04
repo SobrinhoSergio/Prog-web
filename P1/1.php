@@ -58,6 +58,6 @@ foreach ($produtos as $produto) {
 
 $mediaPrecos = $somaPrecos / count($produtos);
 
-echo "Inventário Total: R$ " . number_format($inventarioTotal, 2, ',', '.') . PHP_EOL;
-echo "Média de Preços: R$ " . number_format($mediaPrecos, 2, ',', '.') . PHP_EOL;
+echo $inventarioTotal;
+echo $mediaPrecos;
 ?>

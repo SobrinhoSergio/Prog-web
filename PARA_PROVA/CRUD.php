@@ -107,7 +107,7 @@ class Crud {
 
             return $tarefas;
         } catch (PDOException $e) {
-            throw new CrudException('Erro ao pesquisar tarefas: ' . $e->getMessage());
+            throw new CrudException('Erro ao pesquisar tarefas: ');
         }
     }
 
