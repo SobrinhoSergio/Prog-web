@@ -6,6 +6,11 @@ echo 'EDITAR DESCRIÇÃO', PHP_EOL;
 $id = readline('ID da tarefa que deseja editar: ');
 $newDescription = readline('Nova descrição: ');
 
+if($newDescription==='' || !(mb_strlen($newDescription)<=100)){
+    echo "Valor Inválido";
+    return;
+}
+
 $pdo = null;
 
 try {

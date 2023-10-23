@@ -1,0 +1,9 @@
+1) Crie um parâmetro "nome" em contatos.php,
+   que permita filtrar os contatos que contenham
+   o valor indicado nesse parâmetro.
+
+2) Crie o arquivo "remover.php" de forma que obtenha
+   o id indicado por parâmetro, caso seja informado, e
+   remova o contato com esse id. Caso o id não seja informado,
+   exibir uma mensagem de erro. Em caso de sucesso na remoção,
+   exibir uma mensagem com um link para a listagem.
