@@ -1,18 +1,24 @@
 <?php
+
+require_once 'conexao.php';
+
 $id = isset( $_GET[ 'id' ] ) ? $_GET[ 'id' ] : -1;
+
 if ( ! is_numeric( $id ) ) {
     die( 'Id deve ser um número.' );
 }
+
 if ( $id <= 0 ) {
     die( 'Erro: Id não informado ou inválido.' );
 }
 
-try {
-    $pdo = new PDO( 'mysql:dbname=aula08;host=localhost;charset=utf8',
-        'root', '', [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ] );
+$pdo = null;
 
-    $ps = $pdo->prepare(
-        'DELETE FROM contato WHERE id = :id' );
+try {
+    $pdo = conectar();
+
+    $ps = $pdo->prepare('DELETE FROM contato WHERE id = :id' );
+    
     $ps->execute( [ 'id' => $id ] );
 
     // echo 'Removido com sucesso. ' .
