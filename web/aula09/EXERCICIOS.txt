@@ -1,0 +1,34 @@
+EXERCICIOS
+
+php -S localhost:8080
+
+1) Crie uma lista de tarefas a fazer ("to-do list") em que
+   cada tarefa contenha "id", "descrição" e "feita" (sim/não).
+   Mostre emojis para esses estados.
+
+2) Adicione à listagem de tarefas um formulário que permita
+   pesquisar (filtrar) as tarefas pela descrição ou pelo id,
+   parcialmente.
+   Para isso, deve ser necessário que o form. envie a pesquisa
+   para o próprio arquivo no servidor, pelo método GET.
+
+3) Adicione uma coluna "Remoção" à listagem de tarefas, que exiba
+   um link, em cada tarefa, que permita removê-la.
+
+4) Adicione à listagem um link para o cadastro de tarefas.
+   Então, crie essa funcionalidade.
+
+5) Crie um arquivo edicao.php, que contenha um formulário e
+   receba o parâmetro de URL "id". Caso uma tarefa com o id
+   recebido exista, os dados da tarefa devem ser exibidos no
+   formulário. Do contrário, uma mensagem "Tarefa não
+   encontrada." deve ser exibida acima do formulário.
+
+6) Faça com que o formulário criado anteriormente salve
+   (altere) os dados da tarefa ao acionar uma opção "Salvar",
+   no caso de a tarefa ter sido encontrada antes.
+
+7) Crie um arquivo "remocao.php" que exiba um campo de
+   seleção preenchido com todas as tarefas e um botão
+   "Remover", que realize a remoção da tarefa, através
+   do arquivo PHP criado no exercício 3.

@@ -44,23 +44,22 @@
         </thead>
         <tbody>
             <?php
-            gerarLinhas();
+                require_once 'conexao.php';
+
+                gerarLinhas();
             ?>
         </tbody>
     </table>
 </body>
 </html>
+
 <?php
-
-require_once 'conexao.php';
-
 
 function gerarLinhas() {
     global $ordem, $direcao, $nome;
     $pdo = null;
     try {
-        $pdo = new PDO( 'mysql:dbname=cadastro_pessoas_db;host=localhost;charset=utf8',
-            'root', '', [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ] );
+        $pdo = conectar();
 
         $ps = $pdo->prepare(
             'SELECT id, nome, telefone FROM contato ' .
