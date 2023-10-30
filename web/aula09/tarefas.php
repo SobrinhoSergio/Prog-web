@@ -35,16 +35,15 @@
 
 function gerarLinhas( PDO $pdo ) {
 
-    $pesquisa = isset( $_GET[ 'pesquisa' ] )
-        ? $_GET[ 'pesquisa' ] : '';
+    $pesquisa = isset( $_GET[ 'pesquisa' ] ) ? $_GET[ 'pesquisa' ] : '';
 
-    $ps = $pdo->prepare(
-        'SELECT id, descricao, feita FROM tarefa
-        WHERE id LIKE :id OR descricao LIKE :descricao ' );
-    $ps->execute( [
+    $ps = $pdo->prepare('SELECT id, descricao, feita FROM tarefa WHERE id LIKE :id OR descricao LIKE :descricao ' );
+    
+    $ps->execute([
         'id' => '%'. $pesquisa . '%',
         'descricao' => '%'. $pesquisa . '%'
-    ] );
+    ]);
+    
     foreach ( $ps as $t ) {
         $feita = $t['feita'] ? '✅' : '❌';
         echo <<<LINHA
