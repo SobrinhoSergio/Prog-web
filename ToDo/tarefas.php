@@ -19,7 +19,7 @@
         <form method="GET" action="tarefas.php" class="mb-3">
             <div class="row align-items-center">
                 <div class="form-group col-10">
-                    <label for="pesquisa"><h2>Pesquisa:</h2></label>
+                    <label for="pesquisa"></label>
                     <input type="search" name="pesquisa" id="pesquisa" class="form-control">
                 </div>
                 <div class="col">
