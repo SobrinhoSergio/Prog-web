@@ -1,0 +1,19 @@
+(Antes em aula, fizemos a remoção de um game,
+no conteúdo da aula10, e depois a transferência - vide index.php)
+
+1) Faça uma rota que permita atualizar um cliente específico.
+
+
+2) Crie uma rota /clientes que retorne uma página
+   HTML com os clientes e seus saldos.
+   Em caso de erro, retornar o código HTTP mais apropriado.
+
+---
+
+EXEMPLOS DE curl:
+
+curl -X POST http://localhost:8080/transferencias -d "origem_id=1&destino_id=2&valor=100"
+
+curl -X PUT http://localhost:8080/clientes/3 -d "nome=Bruninha&saldo=12000"
+
+curl http://localhost:8080/clientes

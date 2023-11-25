@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transferência</title>
+</head>
+<body>
+    <h1>Transferência de Saldo</h1>
+    <form method="POST" action="/transferencias" >
+        <label for="origem_id">Origem Id:</label>
+        <input type="number" name="origem_id" id="origem_id" />
+        <label for="destino_id">Destino Id:</label>
+        <input type="number" name="destino_id" id="destino_id" />
+        <label for="valor">Valor:</label>
+        <input type="number" name="valor" id="valor" />
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

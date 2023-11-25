@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Games</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Gênero</th>
+                <th>Ano</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        ( async() => {
+
+
+        const resposta = await fetch( 'http://localhost:8080/games', {
+            headers: {
+                'Accept': 'application/json'
+            }
+        } );
+        const games = await resposta.json();
+        document.querySelector( 'tbody' ).innerHTML =
+            games.map( g =>
+                `<tr>
+                    <td>${g.id}</td>
+                    <td>${g.nome}</td>
+                    <td>${g.genero}</td>
+                    <td>${g.ano}</td>
+                </tr>
+                ` ).join( '\n' );
+        } )();
+    </script>
+</body>
+</html>
