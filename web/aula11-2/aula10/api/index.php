@@ -4,9 +4,7 @@ require_once 'src/operacoes.php';
 $url = $_SERVER[ 'REQUEST_URI' ];
 $metodo = $_SERVER[ 'REQUEST_METHOD' ];
 
-if ( $metodo === 'GET' &&
-    preg_match( '/^\/games\/?$/i', $url )
-) {
+if ( $metodo === 'GET' && preg_match( '/^\/games\/?$/i', $url )) {
     $cabecalhos = getallheaders();
     $formato = isset( $cabecalhos[ 'Accept' ] )
         ? $cabecalhos[ 'Accept' ]
