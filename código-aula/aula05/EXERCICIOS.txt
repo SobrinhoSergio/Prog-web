@@ -1,0 +1,68 @@
+EXERCÍCIOS DE POO em PHP
+
+1) Crie uma classe Produto que represente um produto contendo
+   código, descrição, estoque e preço. Não crie getters e
+   setters para a classe. Adicione um método validar() que
+   valide os atributos do próprio objeto, segundo as regras
+   a seguir (use as funções de string, etc. para isso). O
+   método deve retornar um array que contenha todos os
+   problemas encontrados. Se nenhum problema for encontrado,
+   retorne um array vazio:
+  a) O código deve ter 6 caracteres numéricos (ex. "000001");
+  b) A descrição deve ter entre 2 e 100 caracteres;
+  c) O preço deve ser um número igual ou superior a 0,01.
+  d) O estoque deve ser um numero e ser no mínimo zero.
+
+2) Crie um construtor capaz de inicializar todos os atributos
+   da classe. Faça com que certos valores default sejam
+   assumidos, caso o usuário não os forneça.
+
+3) Crie uma interface que permita abstrair a persistência
+   de um conjunto de produtos (seu salvamento em algum local),
+   fornecendo comportamentos para:
+   a) persistir um conjunto de produtos (array);
+   b) carregar um conjunto de produtos (array);
+
+4) Crie uma implementação para a interface acima que
+   utilize o formato JSON. Para isso, devem ser úteis
+   as funções PHP abaixo:
+   - json_encode(), que recebe um objeto ou array e o
+    transforma em uma string no formato JSON;
+   - json_decode(), que recebe uma string em formato JSON
+     e a transforma em um objeto ou array;
+   - file_get_contents(), que recebe o nome de um arquivo
+     e retorna seu conteúdo como uma string;
+   - file_put_contents(), que recebe o nome de um arquivo
+     e uma string e a salva.
+
+5) Crie uma classe TelaProduto que contenha um método
+   obterProduto(), que retorna uma instância de produto com
+   os dados lidos do usuário.
+
+6) Adicione à classe TelaProduto um método mostrarProdutos()
+   que receba um array de objetos de Produto e exiba-os para
+   o usuário.
+
+7) Adiciona à classe TelaProduto um método menu(), que exiba
+   um menu como o abaixo e retorne a opção selecionada pelo usuário:
+    MENU
+    0) Sair
+    1) Listar
+    2) Cadastrar
+
+8) Crie uma classe Aplicacao que receba em seu construtor um objeto
+   a interface criada para persistir os produtos. Esse objeto deverá
+   ser utilizado pela classe posteriormente, para carregar ou salvar
+   os proutos.
+   Na classe, crie um método iniciar() que seja capaz de exibir um
+   menu para o usuário, utilizando a TelaProduto, e executar o
+   comportamento correspondente, utilizando as classes criadas
+   anteriormente.
+   DICA: Pode ser útil que a classe contenha um array de produtos.
+
+
+
+
+
+
+
