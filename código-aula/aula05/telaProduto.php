@@ -13,9 +13,6 @@ class TelaProduto {
         echo "Digite o preço do produto: ";
         $preco = readline();
 
-        $p = new Produto();
-        $p->validar();
-
         return new Produto($codigo, $descricao, $estoque, $preco);
     }
 
