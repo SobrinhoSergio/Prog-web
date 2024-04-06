@@ -1,0 +1,13 @@
+CREATE TABLE conta(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cpf CHAR(11) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    saldo DECIMAL(10, 2) DEFAULT 0
+) ENGINE=InnoDB;
+
+INSERT INTO conta(cpf, nome, saldo) VALUES
+('11111111111', 'Pessoa 1', 3000),
+('22222222222', 'Pessoa 2', 4000),
+('33333333333', 'Pessoa 3', 7000),
+('44444444444', 'Pessoa 4', 9000);
+

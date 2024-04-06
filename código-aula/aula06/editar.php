@@ -16,6 +16,8 @@ $preco = readline("Novo preço (R$): ");
 
 $pdo = null;
 
+// Perguntar ao professor, se o produto não existir 
+
 try {
     $pdo = conectar();
 
