@@ -4,6 +4,7 @@ namespace Mma;
 
 require_once "repositorio-lutador.php";
 require_once "repositorio-exception.php";
+require_once "Lutador.php";
 
 class RepositorioLutadorBdr implements RepositorioLutador{
 

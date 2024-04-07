@@ -52,4 +52,5 @@ function adicicionarContasBancaria( ContaBancaria &$conta, PDO $pdo ) {
     $conta->setId( (int) $pdo->lastInsertId() );
 }
 
-?>
+
+
