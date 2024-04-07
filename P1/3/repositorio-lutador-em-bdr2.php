@@ -86,7 +86,7 @@ class LutadorRepositoryBDR implements RepositorioLutador {
             $c = [];
             
             foreach($ps as $reg){
-                $c []= new Conta(
+                $c []= new Lutador(
                     $reg['id'],
                     $reg['nome'],
                     $reg['altura'],
