@@ -16,11 +16,11 @@ echo "Digite dois ids para excluí-los: ";
 $id1 = readline("");
 $id2 = readline("");
 
-if(!is_numeric($id1) || $id1<0){
+if(!is_numeric($id1) || $id1<=0){
     die("O Id1 precisa ser numérico!");
 }
 
-if(!is_numeric($id2) || $id2<0){
+if(!is_numeric($id2) || $id2<=0){
     die("O Id2 precisa ser numérico!");
 }
 
