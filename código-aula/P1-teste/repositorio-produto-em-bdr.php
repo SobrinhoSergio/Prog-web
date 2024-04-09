@@ -85,24 +85,59 @@ class RepositorioProdutoEmBdr implements RepositorioProduto{
             throw new RepositorioException('Erro ao listar: '.$e->getMessage());
         }
     }
+
+    public function depositar($cpf, $valor){
+        try{
+            $ps = $this->pdo->prepare('UPDATE conta SET saldo = saldo + :valor WHERE cpf = :cpf');
+            
+            $ps->execute([
+                'cpf' => $cpf, 
+                'valor' => $valor
+            ]);
+            
+            if($ps->rowCount() < 1){
+                return false;
+            }
+            
+            return true;
+
+        }catch (PDOException $e){
+            throw new RepositorioException('Erro ao cadastrar a conta.', $e->getCode(), $e);
+        }
+    }
+
+    public function transferir($cpfRemetente, $cpfDestinatario, $valor){
+        try{
+            $this->pdo->beginTransaction();
+            
+            $ps = $this->pdo->prepare('UPDATE conta SET saldo = saldo - :valor Where cpf = :cpf AND :valor <= saldo AND :valor > 0');
+            
+            $ps->execute([
+                'valor' => $valor,
+                'cpf' => $cpfRemetente,
+            ]);
+
+            if($ps->rowCount() < 1){
+                return false;
+            }
+
+            $pss = $this->pdo->prepare('UPDATE conta SET saldo = saldo + :valor WHERE cpf = :cpf');
+            
+            $pss->execute([
+                'valor' => $valor,
+                'cpf' => $cpfDestinatario,
+            ]);
+            
+            if($pss->rowCount() < 1){
+                return false;
+            }
+            
+            return true;
+        }catch(PDOException $e){
+            throw new ContaException('Valor invalido.', $e->getCode());
+        }
+    }
 }
 
 ?>
 
-function listar(){
-    $ps = $this->pdo->prepare("SELECT id, descricao, preco, quantidade FROM produto");
-
-    $registros = $ps->fetchAll();
-
-    $prod = [];
-
-    foreach($registros as $p){
-        $prod [] = new Produto(
-            $p['id'],
-            $p['descricao'],
-            $p['preco'],
-            $p['quantidade']            
-        );
-    }
-    return $prod;
-}

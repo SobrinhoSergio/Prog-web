@@ -75,4 +75,19 @@ function adicicionarContasBancaria( ContaBancaria &$conta, PDO $pdo ) {
     $conta->setId( (int) $pdo->lastInsertId() );
 }
 
+function editarContaBancaria( ContaBancaria $conta, PDO $pdo ) {
+    $ps = $pdo->prepare( 'UPDATE conta SET nome = :nome, cpf = :cpf, saldo = :saldo WHERE id = :id' );
+    $ps->execute( [
+        'id' => $conta->getId(),
+        'nome' => $conta->getNome(),
+        'cpf' => $conta->getCpf(),
+        'saldo' => $conta->getSaldo()
+    ] );
+}
+
+function excluirContaBancaria( $id, PDO $pdo ) {
+    $ps = $pdo->prepare( 'DELETE FROM conta WHERE id = :id' );
+    $ps->execute( [ 'id' => $id ] );
+}
+
 ?>

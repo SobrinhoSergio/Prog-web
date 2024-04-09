@@ -129,7 +129,12 @@ try{
         FROM produto
     ");
 
-    $ps->fetch();
+    $registro = $ps->fetch();
+
+    echo 'O Maior preço: ' . $registro['precoMaximo'];
+    echo 'O Menor preço: ' . $registro['precoMinimo'];
+    echo 'A Média do preço: ' . $registro['mediaPreco'];
+
 }catch(PDOException $e){
     die("Erro ao listar: ".$e->getMessage());
 }
