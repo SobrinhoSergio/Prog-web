@@ -17,7 +17,7 @@ $quantidade = readline("Digite uma quantidade: ");
 
 $tamanhoDescricao = mb_strlen($descricao);
 
-if($tamanhoDescricao <= 0 || $tamanhoDescricao > 100){
+if(empty($descricao) || $tamanhoDescricao <= 0 || $tamanhoDescricao > 100){
     die("Descrição inválida");
 }
 
@@ -69,7 +69,7 @@ try{
     ]);
 
     if($ps->rowCount() < 1){
-        echo "Porduto não encontrado!";
+        echo "Produto não encontrado!";
     }
     else{
         echo "Produto editado com SUCESSO!";

@@ -4,6 +4,8 @@ require_once 'repositorio-exception.php';
 require_once 'repositorio-produto.php';
 require_once 'produto.php';
 
+use RepositorioException;
+
 class RepositorioProdutoEmBdr implements RepositorioProduto{
     
     private $pdo = null;

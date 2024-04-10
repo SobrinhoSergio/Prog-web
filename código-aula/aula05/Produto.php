@@ -68,3 +68,39 @@ class Produto {
 // var_dump( $p->validar() );
 
 ?>
+
+public function validar() {
+    $mensagens = [];
+    
+    // O código deve ter 6 caracteres numéricos (ex. "000001");
+    
+    $tamCodigo = mb_strlen( $this->codigo );
+    
+    if ( $tamCodigo != TAM_CODIGO ) {
+        array_push($mensagens, 'O código deve ter 6 caracteres');
+    } 
+    
+    else if ( ! is_numeric( $this->codigo ) ) {
+        array_push($mensagens, 'O código deve ser numérico');
+    }
+
+
+    // A descrição deve ter entre 2 e 100 caracteres;
+    $tamDescricao = mb_strlen( $this->descricao );
+    
+    if ( $tamDescricao < TAM_MIN_DESCRICAO || $tamDescricao > TAM_MAX_DESCRICAO ) {
+        array_push($mensagens, 'A descrição deve ter entre 2 e 100 caracteres');
+    }
+
+    // O preço deve ser um número igual ou superior a 0,01.
+    if ( ! is_numeric( $this->preco ) || $this->preco < 0.01 ) {
+        array_push($mensagens, 'O preço deve ser um número igual ou superior a 0,01.');
+    }
+
+    // O estoque deve ser um numero e ser no mínimo zero.
+    if ( ! is_numeric( $this->estoque ) || $this->estoque < 0 ) {
+        array_push($mensagens, 'O estoque deve ser um numero e ser no mínimo zero.');
+    }
+
+    return $mensagens;
+}

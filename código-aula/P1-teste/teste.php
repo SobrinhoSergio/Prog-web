@@ -46,6 +46,32 @@ class ContaBancaria{
         $this->saldo = $saldo;
     }
 
+    public function validar() {
+        $mensagens = [];
+                
+        if (!is_numeric($this->getId()) || $this->getId() <= 0) {
+            array_push($mensagens, 'O ID deve ser um número inteiro positivo');
+        } 
+    
+        $tamNome = mb_strlen($this->getNome());
+        
+        if ($tamNome < 2 || $tamNome > 100) {
+            array_push($mensagens, 'O nome deve ter entre 2 e 100 caracteres');
+        }
+    
+        $tamCpf = mb_strlen($this->getCpf());
+
+        if ($tamCpf != 11) {
+            array_push($mensagens, 'O CPF deve conter exatamente 11 dígitos numéricos');
+        }
+    
+        if (!is_numeric($this->getSaldo()) || $this->getSaldo() < 0) {
+            array_push($mensagens, 'O saldo deve ser um número e no mínimo zero');
+        }
+    
+        return $mensagens;
+    }
+    
 }
 
 function cadastrar(ContaBancaria &$conta, PDO $pdo){
@@ -66,10 +92,10 @@ function listar(PDO $pdo){
 
     foreach($registro as $conta){
         $c[] = new ContaBancaria(
-            $registro['id'],
-            $registro['nome'],
-            $registro['cpf'],
-            $registro['saldo']
+            $conta['id'],
+            $conta['nome'],
+            $conta['cpf'],
+            $conta['saldo']
         );
     }
     return $c;
@@ -123,10 +149,21 @@ $saldo = readline("Saldo: ");
 
 $contaNova = new ContaBancaria(null, $nome, $cpf, $saldo);
 
+$mensagens = $contaNova->validar();
+
+// Se houver mensagens de erro, exibir e sair do script
+if (!empty($mensagens)) {
+    echo "Erro ao cadastrar: \n";
+    foreach ($mensagens as $mensagem) {
+        echo $mensagem;
+    }
+    exit();
+}
+
 try{
     $pdo = conectar();
     cadastrar($contaNova, $pdo);
-}catch(PDOExceprion $e){
+}catch(PDOException $e){
     die("Erro ao Cadastrar: " . $e->getMessage());
 }
 
@@ -156,7 +193,7 @@ try{
     }
 
 
-}catch(PDOExceprion $e){
+}catch(PDOException $e){
     die("Erro ao Cadastrar: " . $e->getMessage());
 }
 
@@ -192,7 +229,7 @@ try{
     $ok = deletar($id1);
 
     if(!$ok){
-        $pdo->roolback();
+        $pdo->rollback();
         return;
     }
 
@@ -205,6 +242,6 @@ try{
 
     $pdo->commit();
 }catch(RepositorioException $e){
-    $pdo->roolback();
+    $pdo->rollback();
     die($e->getMessage());
 }
