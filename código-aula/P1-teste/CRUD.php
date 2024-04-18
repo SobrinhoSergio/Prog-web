@@ -139,3 +139,160 @@ try{
     die("Erro ao listar: ".$e->getMessage());
 }
 
+
+
+$a = ("INSERT INTO produto (descricao, preco, estoque) VALUES (:desc, :preco, :estoque)");
+
+$b = ("UPDATE produto SET descricao = :descricao, preco = :preco, estoque = :estoque WHERE id = :id");
+
+$c = ("DELETE FROM produto WHERE id = :id");
+
+$d = ("SELECT 
+        c.id, 
+        c.nome,
+        c.cpf,
+        s.saldo
+    FROM Cliente c JOIN Saldo s 
+    ON c.id = s.cliente_id ");
+
+function editarProduto(PDO $pdo, PRODUTO $produto, $id){
+    $ps = $pdo->prepare("UPDATE produto set descricao = :descricao, preco = :preco, estoque = :estoque WHERE id = :id");
+
+    $ps->execute([
+        'id' => $id,
+        'descricao' => $produto->getDescricao(),
+        'preco' => $produto->getPreco(),
+        'estoque' => $produto->getEstoque(),
+
+    ]);
+
+    if($ps->rowCount() < 1){
+        return false;
+    }
+    return true;
+}
+
+
+function cadastrarProduto(Produto &$produto, PDO $pdo){
+    $ps = $pdo->prepare("INSERT INTO produto VALUES (descricao, preco, estoque) VALUES (:descricao, :preco, :estoque)");
+
+    $ps->execute([
+        'descricao' => $produto->getDescricao(),
+        'preco' => $produto->getPreco(),
+        'estoque' => $produto->getEstoque()
+    ]);
+
+    $produto->setId((int) $pdo->lastInsertId());
+}
+
+function listarProduto(PDO $pdo){
+    $ps = $pdo->prepare("SELECT id, descricao, preco, estoque FROM produto");
+
+    $registro = $ps->fetchAll();
+
+    $produto = [];
+
+    foreach($registros as $p){
+        $produto[] = new Produto(
+            $p['id'],
+            $p['descricao'],
+            $p['preco'],
+            $p['estoque']
+        ); 
+    }
+    return $produto;
+}
+
+function deletar(PDO $pdo, int $id){
+    $ps = $pdo->prepare("DELETE FROM produto WHERE id = :id");
+
+    $ps->execute(['id' => $id]);
+
+    if($ps->rowCount()<1){
+        return false;
+    }
+    return true;
+}
+
+
+// Usar o deletar
+
+echo "Digite dois IDs que deseja deletar: ";
+
+$id1 = readline("");
+$id2 = readline("");
+
+if(!is_numeric($id1) || $id < 0 ){
+    die("O Id deve ser um número positivo");
+}
+
+$pdo = null;
+
+try{
+    $pdo = $conectar();
+    
+    $pdo->beginTransaction();
+    
+    $remover1 = deletar($id1, $pdo);
+
+    if(!$remover1){
+        $pdo->rollback();
+        return;
+    }
+
+    $remover2 = deletar($id2, $pdo);
+
+    if(!$remover2){
+        $pdo->rollback();
+        return;
+    }
+
+    $pdo->commit();
+}catch(RepositorioException $e){
+    $pdo->rollback();
+    die($e->getMessage());
+}
+
+//listar 
+
+try{
+    $pdo = conectar();
+    $p = listarProduto($pdo);
+
+    foreach($p as $prod){
+        echo 'Id' . $prod->getId() . ' Descrição ' . $prod->getDescricao() . ' Estoque ' . $prod->getEstoque() . ' Preço ' . $prod->getEstoque(); 
+    }
+
+}catch(RepositorioException $e){
+    die("Erro ao listar: " .$e->getMessage());
+}
+
+// Cadastrar
+
+$produto = new Produto(null, $descricao, $preco, $estoque);
+
+$validar = $produto->validar();
+
+if(!empty($validar)){
+    foreach($validar as $mensagem){
+        echo $mensagem;
+    }
+    exit();
+}
+
+//Validações
+
+try{
+    $pdo = conectar();
+
+    cadastrarProduto($produto, $pdo);
+
+    echo "Cadastrado com Sucesso!";
+}catch(RepositorioException $e){
+    die("Erro ao cadastrar: " .$e->getMessage());
+}
+
+
+
+
+

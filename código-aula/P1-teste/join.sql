@@ -15,6 +15,24 @@ CREATE TABLE Saldo (
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 SELECT C.ID, C.Nome, C.CPF, S.Saldo 
 FROM Clientes C
 JOIN Saldo S ON C.ID = S.Cliente_ID;

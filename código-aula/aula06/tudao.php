@@ -63,15 +63,18 @@ try{
 
     $ps = $pdo->prepare("SELECT id, descricao, preco, quantidade FROM produto");
 
-    $ps->setFetchMode(PDO::FETCH_ASSOC);
     $ps->execute();
 
-    foreach($ps as $p){
+    $registros = $ps->fetchAll();
+
+    foreach($registros as $p){
         echo $p['id'] .' com o produto' . $p['descricao'] . ' com o preço ' . $p['preco'] . 'que tem a qtd' . $p['quantidade'], PHP_EOL;
     }
 }catch(PDOException $e){
     die("Erro ao conectar: ".$e->getMessage());
 }
+
+$pdo= null;
 
 try{
     $pdo = conectar();

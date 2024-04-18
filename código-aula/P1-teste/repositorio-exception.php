@@ -1,5 +1,13 @@
 <?php
 
-class RepositorioException extends Exception{
-    
+namespace excecoes;
+ 
+use \RuntimeException;
+ 
+class VendaException extends RuntimeException {
+ 
 }
+ 
+?>
+
+ 

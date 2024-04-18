@@ -2,7 +2,7 @@
 
 namespace excecoes;
 
-use RuntimeException;
+use \RuntimeException;
 
 class VendaException extends RuntimeException{
 

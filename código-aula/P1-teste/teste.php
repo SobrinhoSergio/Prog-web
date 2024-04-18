@@ -81,7 +81,7 @@ function cadastrar(ContaBancaria &$conta, PDO $pdo){
         'cpf' => $conta->getCpf(),
         'saldo' => $conta->getSaldo()
     ]);
-    $conta->setId((int) $pdo->lastInsertId());
+    $conta->setId((int) $pdo->lastInsertId()); // Ou seja, vai ser auto incremental
 }
 
 function listar(PDO $pdo){
@@ -183,7 +183,7 @@ $contaBancariaEditada = new ContaBancaria(null, $descricaoNovo, $cpfNovo, $saldo
 
 try{
     $pdo = conectar();
-    $ok = editarContaBancaria($contaBancariaEditada, $pdo);
+    $ok = editarContaBancaria($contaBancariaEditada, $id, $pdo);
 
     if(ok){
         echo "Editado com Sucesso!";
@@ -201,6 +201,7 @@ try{
 
 
 try {
+    $pdo = conectar();
     $contas = contasBancarias($pdo);
     foreach ($contas as $conta) {
         echo "ID: " . $conta->getId() . ", Nome: " . $conta->getNome() . ", CPF: " . $conta->getCpf() . ", Saldo: " . $conta->getSaldo() . "<br>";
@@ -245,3 +246,29 @@ try{
     $pdo->rollback();
     die($e->getMessage());
 }
+
+
+function deletar(int $id, PDO $pdo){}
+
+class a{
+    private $pdo = null;
+
+    function construct(PDO $pdo){
+        $this->pdo = $pdo;
+    }
+
+    function deletar(int $id){
+        try{
+            $ps = $this->pdo->prepare("DELETE FORM produto WHERE id = :id");
+            $ps->execute(['id' => $id]);
+
+            if($ps->rowCount < 1){
+                return false;
+            }
+            return true;
+        }catch(PDOException $e){
+            throw new RepositorioException("Erro ao deletar: ".$e->getMessage());
+        }
+    }
+}
+

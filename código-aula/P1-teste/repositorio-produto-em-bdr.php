@@ -4,7 +4,7 @@ require_once 'repositorio-exception.php';
 require_once 'repositorio-produto.php';
 require_once 'produto.php';
 
-use RepositorioException;
+use execoes\RepositorioException;
 
 class RepositorioProdutoEmBdr implements RepositorioProduto{
     
@@ -112,17 +112,18 @@ class RepositorioProdutoEmBdr implements RepositorioProduto{
         try{
             $this->pdo->beginTransaction();
             
-            $ps = $this->pdo->prepare('UPDATE conta SET saldo = saldo - :valor Where cpf = :cpf AND :valor <= saldo AND :valor > 0');
+            $ps = $this->pdo->prepare('UPDATE conta SET saldo = saldo - :valor WHERE cpf = :cpf AND :valor <= saldo AND :valor > 0');
             
             $ps->execute([
                 'valor' => $valor,
                 'cpf' => $cpfRemetente,
             ]);
-
+    
             if($ps->rowCount() < 1){
+                $this->pdo->rollBack(); // Reverte a transação em caso de falha
                 return false;
             }
-
+    
             $pss = $this->pdo->prepare('UPDATE conta SET saldo = saldo + :valor WHERE cpf = :cpf');
             
             $pss->execute([
@@ -131,15 +132,41 @@ class RepositorioProdutoEmBdr implements RepositorioProduto{
             ]);
             
             if($pss->rowCount() < 1){
+                $this->pdo->rollBack(); // Reverte a transação em caso de falha
                 return false;
             }
             
+            $this->pdo->commit(); // Confirma a transação se tudo ocorrer bem
             return true;
-        }catch(PDOException $e){
-            throw new ContaException('Valor invalido.', $e->getCode());
+        } catch(PDOException $e){
+            $this->pdo->rollBack(); // Reverte a transação em caso de exceção
+            throw new ContaException('Valor inválido.', $e->getCode());
         }
     }
+    
 }
 
-?>
 
+
+class a implements b{
+    private $pdo = null;
+
+    function __construct(PDO $pdo){
+        $this->pdo = $pdo;
+    }
+
+    function cadastrar(Produto $produto){
+        try{
+        $ps = $this->pdo->prepare("INSERT INTO produto VALUES (nome, preco, estoque) VALUES (:nome, :preco, :estoque)");
+
+        $ps->execute([
+            'nome' => $produto->nome,
+            'preco' => $produto->preco,
+            'estoque' => $produto->estoque
+        ]);
+        }catch(PDOException $e){
+            throw new RepositorioException("Erro ao cadastrar: " .$e->getMessage());
+        }
+
+    }
+}

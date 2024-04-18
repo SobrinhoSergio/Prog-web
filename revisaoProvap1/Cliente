@@ -1,0 +1,46 @@
+<?php
+
+class Cliente{
+    private $id;
+    private $nome;
+    public Telefone $telefone;
+
+    function __construct($id = 0, $nome = ''){
+        $this->id = $id;
+        $this->nome = $nome;
+        $this->telefone = new Telefone;
+    }
+
+    function getId(){
+        return $this->id;
+    }
+
+    function setId($id){
+        $this->id = $id;
+    }
+
+    function getNome(){
+        return $this->nome;
+    }
+
+    function setNome($nome){
+        $this->nome = $nome;
+    }
+
+    function validar(){
+        $mensagem = [];
+
+        if(!is_numeric($this->getId()) || $this->getId() <= 0){
+            array_push($mensagem, "O Id deve ser um número positivo");
+        }
+
+        $tamanhoNome = mb_strlen($this->getNome());
+
+        if($tamanhoNome < 2 || $tamanhoNome > 100){
+            array_push($mensagem, "O nome deve ter entre 2 e 100 caracteres");
+        }
+
+        return $mensagem;
+    }
+
+}
