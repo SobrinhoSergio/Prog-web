@@ -111,7 +111,7 @@ class RepositorioClienteEmBDR implements RepositorioCliente {
     }
 
     private function telefonesDoClienteComId( $idCliente ) {
-        try {
+        try {   
             $ps = $this->pdo->prepare( 'SELECT id, numero FROM cliente_telefone WHERE cliente_id = :cliente_id' );
             
             $ps->execute( [ "cliente_id" => $idCliente ] );
