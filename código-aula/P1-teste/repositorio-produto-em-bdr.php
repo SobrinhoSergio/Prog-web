@@ -10,7 +10,7 @@ class RepositorioProdutoEmBdr implements RepositorioProduto{
     
     private $pdo = null;
 
-    function __constructor(PDO $pdo){
+    function __construct(PDO $pdo){
         $this->pdo = $pdo;
     }
 
@@ -43,7 +43,7 @@ class RepositorioProdutoEmBdr implements RepositorioProduto{
             if($ps->rowCount() < 1){
                 return false;
             }
-            return false;
+            return true;
         }catch(PDOException $e){
             throw new RepositorioException("Erro ao editar: " . $e->getMessage());
         }
