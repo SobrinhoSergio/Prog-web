@@ -1,0 +1,5 @@
+1) O banco de dados "acme", localizado em "https://mysql.acme.com", com charset "utf8", usuário "gerente" e senha "111111", que contenha a tabela "fornecedor", cuja estrutura é indicada abaixo 
+
+
+
+

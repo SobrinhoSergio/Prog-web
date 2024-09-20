@@ -14,9 +14,7 @@ if ( $metodo === 'GET' && preg_match( '/^\/games\/?$/i', $url )) {
     } else {
         retornarEmHtml();
     }
-} else if ( $metodo === 'POST' &&
-    preg_match( '/^\/games\/?$/i', $url )
-) {
+} else if ( $metodo === 'POST' && preg_match( '/^\/games\/?$/i', $url )) {
     cadastrarGame( $_POST );
 }
 ?>
